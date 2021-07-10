@@ -10,7 +10,7 @@ node{
     }
 
     stage('Run image') {
-        docker.image('khadija/nginx').withRun('-p 90:90') { c ->
+        docker.image('khadija/nginx').withRun('-p 80:80') { c ->
 
         sh 'docker ps'
 
