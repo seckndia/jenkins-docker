@@ -1,22 +1,21 @@
-pipeline {
-    agent any 
-    stages {
-        stage('Build') {
-            steps {
-                echo 'hello Khadija'
-            }
-        }
-        stage('Test') { 
-            steps {
-             echo'Bien reçu'
-            }
-        }
-        
-        stage('Deploy') { 
-            steps {
-                echo 'je suis dans deploy'
-            }
-        }
+node{
+  def app
+
+    stage('Clone') {
+        checkout scm
     }
-    
+
+    stage('Build image') {
+        app = docker.build("khadija/nginx")
+    }
+
+    stage('Run image') {
+        docker.image('khadija/nginx').withRun('-p 90:90') { c ->
+
+        sh 'docker ps'
+
+        sh 'curl localhost'
+
+    }
+    }
 }
