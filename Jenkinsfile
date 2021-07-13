@@ -5,6 +5,11 @@ pipeline {
          }
     }
     stages {
+        stage('clone') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Test') {
             steps {
                 sh 'node --version'
