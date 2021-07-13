@@ -13,8 +13,19 @@ services:
             - /home/khadija/projetOdoo/projet_jenkins/srv/data/jenkins_data:/jenkins_home
             - /home/khadija/projetOdoo/projet_jenkins/srv/data/jenkins:/jenkins_config
 
+    Docker:
+        image: 'docker'
+        container_name: "docker"
+    
+        volumes:
+            - /home/khadija/projetOdoo/projet_jenkins/srv/data/vdocker://var/lib/docker
+        
+        
+
 volumes:
     jenkins_data:
         driver: local
     jenkins:
         driver: local
+    vdocker:
+         driver: local
