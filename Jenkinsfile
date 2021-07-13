@@ -1,23 +1,12 @@
-node{
-  def app
-
-    stage('Clone') {
-        checkout scm
+pipeline {
+    agent {
+        docker { image 'node:14-alpine' }
     }
-
-    stage('Build image') {
-        app = docker.build("khadija/nginx")
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
     }
-
-    stage('Run image') {
-        docker.image('khadija/nginx').withRun('-p 80:80') { c ->
-
-        sh 'docker ps'
-
-        sh 'curl localhost'
-
-    }
-
-    }
-    
 }
