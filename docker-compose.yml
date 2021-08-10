@@ -14,7 +14,7 @@ services:
             - /home/khadija/projetOdoo/projet_jenkins/srv/data/jenkins:/jenkins_config
 
     Docker:
-        image: 'docker'
+        image: 'docker:latest'
         container_name: "docker"
     
         volumes:
