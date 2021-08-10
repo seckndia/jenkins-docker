@@ -1,18 +1,17 @@
 pipeline {
-	agent { dockerfile true }
-					
+    agent { dockerfile true     } 
+                  
     
-    	stages {
-        	stage('clone') {
-            		steps {
-                		checkout scm
+    stages {
+        stage('clone') {
+            steps {
+                checkout scm
             }
         }
-        	stage('docker version') {
-            		steps {
-               			 sh 'docker --version'
-           			 }
-       	 }
-	}
+        stage('docker version') {
+            steps {
+                sh 'docker --version'
+            }
+        }
     }
 }
