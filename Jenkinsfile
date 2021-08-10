@@ -1,18 +1,16 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:14-alpine' 
-         }
-    }
+    agent { dockerfile true 
+	}
+    
     stages {
         stage('clone') {
             steps {
                 checkout scm
             }
         }
-        stage('Test') {
+        stage('docker version') {
             steps {
-                sh 'node --version'
+                sh 'docker --version'
             }
         }
     }
