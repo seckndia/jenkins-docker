@@ -28,10 +28,14 @@ pipeline {
         }
         stage('Slack notification'){
             steps{
-                slackSend channel:'#jenkins_pipeline', 
+                slackSend baseUrl: 'https://hooks.slack.com/services/',
+                    botUser: true,
                     color: COLOR_MAP[currentBuild.currentResult],
-                    message: "*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\n Plus d'infos: ${env.BUILD_URL} \n Une nouvelle image est disponible pour le projet docker\n Message du commit : ${env.GIT_COMMIT_MSG} \n Lien du commit: https://gitlab.baamtu.com/tdieng/ptn/commit/${env.GIT_COMMIT} "
+                    message: "*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\n Plus d'infos: ${env.BUILD_URL} \n Une nouvelle image est disponible pour le projet docker\n Message du commit : ${env.GIT_COMMIT_MSG} \n Lien du commit: https://gitlab.baamtu.com/tdieng/ptn/commit/${env.GIT_COMMIT} ",
+                    tokenCredentialId: 'slack-demo', 
+                    username: 'kadidiatou.ndiaye'
             }
         }
+       
     }
 }
