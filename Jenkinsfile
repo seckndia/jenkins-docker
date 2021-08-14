@@ -1,4 +1,4 @@
-#!/usr/bin/env groovy
+
 
 def COLOR_MAP = [
     'SUCCESS': 'good', 
