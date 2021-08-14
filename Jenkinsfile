@@ -34,6 +34,29 @@ pipeline {
                     username: 'kadidiatou.ndiaye'
             }
         }
+       stage('Error') {
+          // when doError is equal to 1, return an error
+          when {
+            expression { doError == '1' }
+          }
+          steps {
+            echo "Failure :("
+            error "Test failed on purpose, doError == str(1)"
+          }
+        }
+       stage('Success') {
+          // when doError is equal to 0, just print a simple message
+          when {
+            expression { doError == '0' }
+          }
+          steps {
+            echo "Success :)"
+          }
+        }
+
+      }
+
+      
        
     }
 }
