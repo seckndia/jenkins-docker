@@ -30,8 +30,10 @@ pipeline {
             steps{
                 slackSend baseUrl: 'https://hooks.slack.com/services/',
                     botUser: true,
+                    channel: '#jenkins_pipeline',
                     color: COLOR_MAP[currentBuild.currentResult],
                     message: "*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\n Plus d'infos: ${env.BUILD_URL} \n Une nouvelle image est disponible pour le projet docker\n Message du commit : ${env.GIT_COMMIT_MSG} \n Lien du commit: https://gitlab.baamtu.com/tdieng/ptn/commit/${env.GIT_COMMIT} ",
+                    notifyCommitters: true
                     tokenCredentialId: 'slack-demo', 
                     username: 'kadidiatou.ndiaye'
             }
