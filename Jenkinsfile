@@ -26,8 +26,8 @@ pipeline {
                 sh 'docker --version'
             }
         }
-        stage('Slack notification'){
-            steps{
+        stage('Slack notification') {
+            steps {
                 slackSend baseUrl: 'https://hooks.slack.com/services/',
                     botUser: true,
                     channel: '#jenkins_pipeline',
