@@ -17,7 +17,7 @@ pipeline {
             steps{
                 slackSend baseUrl: 'https://hooks.slack.com/services/', 
                     botUser: true, channel: '#jenkins_pipeline', color: 'good',
-                    message: 'Welcome to slack', notifyCommitters: true,
+                    message: 'Welcome to jenkins slack', notifyCommitters: true,
                     tokenCredentialId: 'slack-demo', 
                     username: 'kadidiatou.ndiaye'
             }
