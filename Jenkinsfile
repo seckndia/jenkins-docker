@@ -25,6 +25,11 @@ pipeline {
                 sh 'docker --version'
             }
         }
+        stage('Slack notification test') {
+            steps {
+                slackSend channel: "#jenkins_pipiline", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+            }
+        }
 
        stage('Error') {
           // when doError is equal to 1, return an error
