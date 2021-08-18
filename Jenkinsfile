@@ -26,9 +26,8 @@ pipeline {
             }
         }
         stage('Slack notification') {
-             steps {
-                 slackSend channel: "#jenkins_pipeline", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
-           
+            steps {
+                slackSend channel: "#jenkins_pipeline", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
              }
         }
        stage('Error') {
