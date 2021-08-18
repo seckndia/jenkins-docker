@@ -52,7 +52,7 @@ pipeline {
     success {
      slackSend baseUrl: 'https://hooks.slack.com/services/',
          botUser: true, channel: '#jenkins_pipeline', 
-         color: 'COLOR_MAP[currentBuild.currentResult]', 
+         color: 'good', 
          message: '*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\\n Plus d\'infos: ${env.BUILD_URL} \\n Une nouvelle image est disponible pour le projet',
          notifyCommitters: true,
          tokenCredentialId: 'slack-demo',
@@ -61,7 +61,7 @@ pipeline {
     failure {
      slackSend baseUrl: 'https://hooks.slack.com/services/',
          botUser: true, channel: '#jenkins_pipeline',
-         color: 'COLOR_MAP[currentBuild.currentResult]',
+         color: 'danger',
          message: '*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\\n Plus d\'infos: ${env.BUILD_URL} \\n Une nouvelle image est disponible pour le projet',
          notifyCommitters: true, 
          tokenCredentialId: 'slack-demo',
