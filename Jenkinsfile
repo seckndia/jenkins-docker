@@ -25,15 +25,12 @@ pipeline {
                 sh 'docker --version'
             }
         }
-//         stage('Slack notification') {
-//             steps {
-//                 slackSend baseUrl: 'https://hooks.slack.com/services/', 
-//                     botUser: true, channel: '#jenkins_pipeline', color: 'good',
-//                     message: 'Welcome to jenkins slack', notifyCommitters: true,
-//                     tokenCredentialId: 'slack-demo', 
-//                     username: 'kadidiatou.ndiaye'
-//             }
-//         }
+        stage('Slack notification') {
+             steps {
+                 slackSend channel: "#jenkins_pipeline", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+           
+             }
+        }
        stage('Error') {
           // when doError is equal to 1, return an error
           when {
