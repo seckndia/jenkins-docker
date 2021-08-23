@@ -63,15 +63,7 @@ pipeline {
          tokenCredentialId: 'slack-demo',
          username: 'kadidiatou.ndiaye'
     }
-    failure {
-     slackSend baseUrl: 'https://hooks.slack.com/services/',
-         botUser: true, channel: '#jenkins_pipeline',
-         color: 'danger',
-         message: '*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\\n Plus d\'infos: ${env.BUILD_URL} \\n Une nouvelle image est disponible pour le projet',
-         notifyCommitters: true, 
-         tokenCredentialId: 'slack-demo',
-         username: 'kadidiatou.ndiaye'
-    }
+
   }
 }
   
