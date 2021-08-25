@@ -1,70 +1,38 @@
 
-def COLOR_MAP = [
-    'SUCCESS': 'good', 
-    'FAILURE': 'danger',
-]
-
-
+def FAILED_STAGE
 pipeline {
-    environment {
-        // test variable: 0=success, 1=fail; must be string
-        doError = '0'
-        GIT_COMMIT_MSG = sh(returnStdout: true, script: "git log -1 --pretty=%B").trim()
-    }
+    
     agent any
                   
     
     stages {
         stage('clone') {
             steps {
+                script{
+                    last_started = env.STAGE_NAME
+                }
                 checkout scm
             }
         }
         stage('docker version') {
             steps {
+                script{
+                    last_started = env.STAGE_NAME
+                }
                 sh 'docker --version'
             }
         }
-        stage('Slack notification test') {
-            steps {
-                slackSend channel: "#jenkins_pipiline", message: "Build Started: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
-            }
-        }
 
-       stage('Error') {
-          // when doError is equal to 1, return an error
-          when {
-            expression { doError == '1' }
-          }
-          steps {
-            echo "Failure :("
-            error "Test failed on purpose, doError == str(1)"
-          }
-        }
-       stage('Success') {
-          // when doError is equal to 0, just print a simple message
-          when {
-            expression { doError == '0' }
-          }
-          steps {
-            echo "Success :)"
-          }
-        }
 
-      }
     // Post-build actions
-  post {
-    success {
-     slackSend baseUrl: 'https://hooks.slack.com/services/',
-         botUser: true, channel: '#jenkins_pipeline', 
-         color: 'good', 
-         message: '*${currentBuild.currentResult}:* JOB ${env.JOB_NAME} | BUILD N° = ${env.BUILD_NUMBER}\\n Plus d\'infos: ${env.BUILD_URL} \\n Une nouvelle image est disponible pour le projet',
-         notifyCommitters: true,
-         tokenCredentialId: 'slack-demo',
-         username: 'kadidiatou.ndiaye'
+  post{
+        success{
+            slackSend color: '#BADA55', message: 'BUILD Success!'
+        }
+        failure{
+             slackSend color: '#FF0000', message: 'Build Fail : ' + last_started
+        }
     }
-
-  }
 }
   
     
