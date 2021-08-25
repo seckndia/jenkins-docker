@@ -19,7 +19,7 @@ pipeline {
                 script{
                     last_started = env.STAGE_NAME
                 }
-                sh 'docker --versionn'
+                sh 'docker --version'
             }
         }
     }
