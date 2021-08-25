@@ -11,7 +11,7 @@ pipeline {
                 script{
                     last_started = env.STAGE_NAME
                 }
-                checkout scm,
+                checkout scm
             }
         }
         stage('docker version') {
@@ -19,7 +19,7 @@ pipeline {
                 script{
                     last_started = env.STAGE_NAME
                 }
-                sh 'docker --version'
+                sh 'docker --versionn'
             }
         }
     }
