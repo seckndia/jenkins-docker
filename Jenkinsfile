@@ -2,7 +2,7 @@
 def FAILED_STAGE
 pipeline {
     
-    agent any
+   agent any
                   
     
     stages {
@@ -34,6 +34,5 @@ pipeline {
         }
     }
 }
+}
   
-    
-
