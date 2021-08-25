@@ -25,7 +25,7 @@ pipeline {
 
 
     // Post-build actions
-  post{
+    post{
         success{
             slackSend color: '#BADA55', message: 'BUILD Success!'
         }
@@ -34,5 +34,3 @@ pipeline {
         }
     }
 }
-}
-  
