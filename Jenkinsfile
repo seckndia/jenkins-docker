@@ -22,7 +22,7 @@ pipeline {
                 sh 'docker --version'
             }
         }
-
+    }
 
     // Post-build actions
     post{
