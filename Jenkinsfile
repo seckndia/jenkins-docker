@@ -27,7 +27,7 @@ pipeline {
     // Post-build actions
     post{
         success{
-            slackSend color: '#BADA55', message: 'BUILD Success!'
+            slackSend color: 'good', message: 'BUILD Success!'
         }
         failure{
              slackSend color: '#FF0000', message: 'Build Fail : ' + last_started
